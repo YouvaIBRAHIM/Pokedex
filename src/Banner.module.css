@@ -1,0 +1,11 @@
+.menuItem{ 
+    margin: '1rem';
+    font-size: '1.2rem';
+    display: flex;
+    align-items: center;
+}
+.mainTitle{ 
+    font-size: '2rem';
+    text-align: 'center';
+    margin: '1rem' 
+}
