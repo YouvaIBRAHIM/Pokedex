@@ -10,8 +10,7 @@ export const PokemonsSlice = createSlice({
   initialState,
   reducers: {
     addPokemons: (state, action) => {
-      console.log(action.payload);
-      state.pokemons = action.payload.pokemons;
+      state.pokemons = [ ...state.pokemons, ...action.payload.pokemons];
       state.nextUrl = action.payload.nextUrl;
     },
   },
