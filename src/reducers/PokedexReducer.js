@@ -19,10 +19,10 @@ export const PokedexSlice = createSlice({
   reducers: {
     addToPokedex: (state, action) => {
       const pokemon = action.payload.pokemon;
-      state.pokemons = [...state.pokemons, {...pokemon}];
+      state.pokemons = [...state.pokemons, pokemon];
       state.count += 1;
+
       localStorage.setItem('pokedex', JSON.stringify(state));
-      const pokedexOnLocalStorage = localStorage.getItem('pokedex');
     },
     removeFromPokedex: (state, action) => {
       state.pokemons = state.pokemons.filter((pokemon) => pokemon.name !== action.payload.pokemon.name);
@@ -32,7 +32,6 @@ export const PokedexSlice = createSlice({
     syncWithLocaleStorage: (state, action) => {
       if (action.payload) {
         state = action.payload;
-        console.log(state);
       }
     },
   },

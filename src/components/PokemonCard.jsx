@@ -2,6 +2,7 @@ import React from 'react';
 import styles from "../PokemonCard.module.css";
 import { addToPokedex, removeFromPokedex } from '../reducers/PokedexReducer';
 import { useDispatch, useSelector } from 'react-redux';
+import { getPokemonUrlImageById } from '../services/Pokemons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBookmark } from '@fortawesome/free-solid-svg-icons'
 
@@ -26,6 +27,7 @@ export default function PokemonCard({ pokemon }) {
       onAddToPokedex();
     }
   }
+  
   return (
     <figure className={`${styles.card} ${styles.cardNormal}` }>
       <FontAwesomeIcon className={isPokemonMarked ? `${styles.faBookmark} ${styles.faBookmarked}` : styles.faBookmark} onClick={onToggleBookmark} icon={faBookmark} />
@@ -40,9 +42,3 @@ export default function PokemonCard({ pokemon }) {
   );
 }
 
-function getPokemonUrlImageById(url) {
-  const urlElemnts = url.split('/');
-  const pokemonId = urlElemnts[urlElemnts.length - 2];
-  const pokemonImg = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemonId}.svg`;
-  return pokemonImg;
-}
