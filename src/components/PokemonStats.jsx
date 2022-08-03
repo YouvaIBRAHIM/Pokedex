@@ -1,6 +1,10 @@
+import { useSelector } from 'react-redux';
 import styles from "../PokemonDetail.module.css";
 
-const PokemonStats = ({pokemonStats}) => {
+const PokemonStats = () => {
+    const { pokemonInfos } = useSelector((state) => state.pokemonInfos);
+    
+    const pokemonStats = pokemonInfos.stats
     let hp, attack, defense, specialAttack, specialDefense, speed;
     if (pokemonStats) {
         hp = pokemonStats[0].base_stat;
@@ -16,37 +20,37 @@ const PokemonStats = ({pokemonStats}) => {
             <div className={styles.skill}>
                 <p>HP</p>
                 <div style={{width: hp+'%'}} className={`${styles.skillBar} ${styles.skill1} ${styles.wow} ${styles.slideInLeft} ${styles.animated}`}>
-                    <span className={styles.skillCount1}>{hp}%</span>
+                    <span className={styles.skillCount1}>{hp}</span>
                 </div>
             </div>
             <div className={styles.skill}>
                 <p>Attack</p>
                 <div style={{width: attack+'%'}} className={`${styles.skillBar} ${styles.skill2} ${styles.wow} ${styles.slideInLeft} ${styles.animated}`}>
-                    <span className={styles.skillCount2}>{attack}%</span>
+                    <span className={styles.skillCount2}>{attack}</span>
                 </div>
             </div>
             <div className={styles.skill}>
                 <p>Defense</p>
                 <div style={{width: defense+'%'}} className={`${styles.skillBar} ${styles.skill3} ${styles.wow} ${styles.slideInLeft} ${styles.animated}`}>
-                    <span className={styles.skillCount3}>{defense}%</span>
+                    <span className={styles.skillCount3}>{defense}</span>
                 </div>
             </div>
             <div className={styles.skill}>
                 <p>Speed</p>
                 <div style={{width: speed+'%'}} className={`${styles.skillBar} ${styles.skill4} ${styles.wow} ${styles.slideInLeft} ${styles.animated}`}>
-                    <span className={styles.skillCount4}>{speed}%</span>
+                    <span className={styles.skillCount4}>{speed}</span>
                 </div>
             </div>
             <div className={styles.skill}>
                 <p>Sp Atk</p>
                 <div style={{width: specialAttack+'%'}} className={`${styles.skillBar} ${styles.skill5} ${styles.wow} ${styles.slideInLeft} ${styles.animated}`}>
-                    <span className={styles.skillCount5}>{specialAttack}%</span>
+                    <span className={styles.skillCount5}>{specialAttack}</span>
                 </div>
             </div>
             <div className={styles.skill}>
                 <p>Sp Def</p>
                 <div style={{width: specialDefense+'%'}} className={`${styles.skillBar} ${styles.skill6} ${styles.wow} ${styles.slideInLeft} ${styles.animated}`}>
-                    <span className={styles.skillCount6}>{specialDefense}%</span>
+                    <span className={styles.skillCount6}>{specialDefense}</span>
                 </div>
             </div>
         </div>

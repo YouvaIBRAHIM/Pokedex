@@ -9,3 +9,8 @@
     text-align: 'center';
     margin: '1rem' 
 }
+
+.pokemonLogoImage{
+    width: 150px;
+    height: 70px;
+}

@@ -10,10 +10,10 @@ body {
 header {
   background-color: #040000;
   overflow: auto;
-  
   display: flex;
   justify-content: space-around;
   align-items: center;
+
 }
 
 header a {

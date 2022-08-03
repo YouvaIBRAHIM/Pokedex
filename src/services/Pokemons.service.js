@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 export async function getPokemons(API_ENDPOINT = 'https://pokeapi.co/api/v2/pokemon/') {
-  console.log('fetching ', API_ENDPOINT, '...')
   const { data } = await axios.get(API_ENDPOINT);
 
   return {
@@ -27,7 +26,7 @@ export function getPokemonInfosById(id) {
 }
 
 export function getPokemonSpeciesById(id) {
-  const [result, setResult] = useState({});
+  const [result, setResult] = useState(null);
   const url = `https://pokeapi.co/api/v2/pokemon-species/${id}`;
 
   useEffect(() => {
@@ -41,10 +40,29 @@ export function getPokemonSpeciesById(id) {
   return result;
 }
 
-export function getPokemonUrlImageById(url) {
+export async function getPokemonEvolution(url) {
+  const { data } = await axios.get(url);
+  const from = {
+    name: data.chain.evolves_to[0].species.name,
+    img: getPokemonUrlImageAndId(data.chain.evolves_to[0].species.url).img
+  }
+  const to = {
+    name: data.chain.evolves_to[0].evolves_to[0].species.name,
+    img: getPokemonUrlImageAndId(data.chain.evolves_to[0].evolves_to[0].species.url).img
+  }
+  return {
+    from: from,
+    to: to
+  };
+}
+
+export function getPokemonUrlImageAndId(url) {
   const urlElemnts = url.split('/');
   const pokemonId = urlElemnts[urlElemnts.length - 2];
   const pokemonImg = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemonId}.svg`;
-  return pokemonImg;
+  return {
+    id: pokemonId,
+    img: pokemonImg
+  };
 }
 

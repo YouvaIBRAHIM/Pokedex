@@ -1,0 +1,60 @@
+
+.container {
+    width: 100%;
+    height: auto;
+    margin: 0;
+    margin-top: 120px;
+    
+}
+  
+.tabList {
+    height: 50px;
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 0;
+    margin: auto;
+}
+  
+.tabs {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+
+  
+.activeTabs::before {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% + 2px);
+    height: 3px;
+    background: #f15368;
+}
+  
+.content {
+      display: none;
+      padding: 10px;
+}
+  
+.activeContent {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+}
+
+@media (max-width: 470px) {
+    .container {
+        margin-top: 70px;
+    }
+    
+}

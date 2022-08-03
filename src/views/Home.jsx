@@ -1,13 +1,12 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useRef } from "react";
 import PokemonsList from '../components/PokemonsList';
-import { getPokemons } from '../services/Pokemons';
+import { getPokemons } from '../services/Pokemons.service.js';
 import { useSelector, useDispatch } from 'react-redux';
 import { addPokemons } from '../reducers/PokemonsReducer';
 
 
 function Home() {
-  let { pokemons, nextUrl } = useSelector((state) => state.pokemons);
-  // const [next, setNext] = useState(nextUrl);
+  let { pokemons } = useSelector((state) => state.pokemons);
 
   const next = useRef();
 
@@ -17,7 +16,6 @@ function Home() {
     const result = getPokemons();
     result.then(res => {
         dispatch(addPokemons(res));
-        console.log('Newnext url',res.nextUrl)
         next.current = res.nextUrl;
     });
 
@@ -38,7 +36,6 @@ function Home() {
       const result = getPokemons(next.current);
       result.then(res => {
         dispatch(addPokemons(res));
-        console.log('new next ', res.nextUrl)
         next.current = res.nextUrl;
       })
     }

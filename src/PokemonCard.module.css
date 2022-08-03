@@ -27,6 +27,7 @@ h1{
     box-shadow: 0px 5px 20px -10px #111111;
     position: relative;
     transition: 0.4s;
+    
 }
 .cardCaption {
     background-color: rgba(255, 255, 255, 0.65);
@@ -55,7 +56,10 @@ h1{
     background: linear-gradient(110deg, #f15368 0%, #bbbbbb 100%);
     box-shadow: 0px 5px 20px -10px #f15368;
 }
-
+.card a{
+    text-decoration: none;
+    color: inherit;
+}
 .faBookmark{
     color: white;
     font-size: 32px;

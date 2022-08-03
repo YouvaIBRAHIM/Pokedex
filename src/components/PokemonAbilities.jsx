@@ -1,29 +1,38 @@
+import { useSelector } from 'react-redux';
 import styles from "../PokemonDetail.module.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faVenus, faMars } from '@fortawesome/free-solid-svg-icons'
+import { useEffect } from 'react';
 
-const PokemonAbilities = ({ pokemonInfos, pokemonSpecies }) => {
+const PokemonAbilities = () => {
+    const { pokemonInfos, pokemonSpecies } = useSelector((state) => state.pokemonInfos);
 
-    const eggGroups = pokemonSpecies.egg_groups;
     const eggGroupsName = [];
-    if (eggGroups) {
-        for (let i = 0; i < eggGroups.length; i++) {
-            const eggGroup = eggGroups[i];
-            const eggGroupName = eggGroup.name.charAt(0).toUpperCase() + eggGroup.name.slice(1);
-            eggGroupsName.push(eggGroupName)
-        }
-    }
-
-    const abilities = pokemonInfos.abilities;
     const abilitiesName = [];
-    if (abilities) {
-        for (let i = 0; i < abilities.length; i++) {
-            const ability = abilities[i];
-            const abilityName = ability.ability.name.charAt(0).toUpperCase() + ability.ability.name.slice(1);
-            abilitiesName.push(abilityName)
+
+    if (pokemonSpecies) {
+        const eggGroups = pokemonSpecies.egg_groups;
+
+        if (eggGroups) {
+            for (let i = 0; i < eggGroups.length; i++) {
+                const eggGroup = eggGroups[i];
+                const eggGroupName = eggGroup.name;
+                eggGroupsName.push(eggGroupName)
+            }
+        }
+    }
+    if (pokemonInfos) {
+        const abilities = pokemonInfos.abilities;
+        if (abilities) {
+            for (let i = 0; i < abilities.length; i++) {
+                const ability = abilities[i];
+                const abilityName = ability.ability.name;
+                abilitiesName.push(abilityName)
+            }
         }
     }
 
+    
 
     return (
         <div className={styles.tablesContainer}>
@@ -32,19 +41,19 @@ const PokemonAbilities = ({ pokemonInfos, pokemonSpecies }) => {
                     <tbody>
                         <tr className={styles.trContainer} >
                             <th scope="row">Height</th>
-                            <td>{pokemonInfos.height/10} m</td>
+                            <td>{pokemonInfos && pokemonInfos.height/10} m</td>
                         </tr>
                         <tr className={styles.trContainer} >
                             <th scope="row">Weight</th>
-                            <td>{pokemonInfos.weight/10} kg</td>
+                            <td>{pokemonInfos && pokemonInfos.weight/10} kg</td>
                         </tr>
                         <tr className={styles.trContainer} >
                             <th scope="row">Egg Groups</th>
-                            <td>{eggGroupsName.join(', ')}</td>
+                            <td className={styles.eggGroups}>{eggGroupsName.join(', ')}</td>
                         </tr>
                         <tr className={styles.trContainer} >
                             <th scope="row">Abilities</th>
-                            <td>{abilitiesName.join(', ')}</td>
+                            <td className={styles.abilities}>{abilitiesName.join(', ')}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -54,7 +63,7 @@ const PokemonAbilities = ({ pokemonInfos, pokemonSpecies }) => {
                     <tbody>
                         <tr className={styles.trContainer} >
                             <th scope="row">Catch Rate</th>
-                            <td>{pokemonSpecies.capture_rate} %</td>
+                            <td>{pokemonSpecies && pokemonSpecies.capture_rate} %</td>
                         </tr>
                         <tr className={styles.trContainer} >
                             <th scope="row">Gender Ration</th>

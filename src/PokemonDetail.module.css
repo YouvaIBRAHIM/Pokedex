@@ -9,7 +9,8 @@
 }
 
 .coverContainer h1 {
-    font-size: 55px;
+    font-size: 36px;
+    text-transform: uppercase;
 }
 
 .coverContent{
@@ -63,7 +64,9 @@ th, td{
 td{
     min-width: 400px;
 }
-
+.abilities, .eggGroups{
+    text-transform: capitalize;
+}
 @media (max-width: 370px) {
 
     td{
@@ -82,8 +85,7 @@ td{
 .skill {
     margin-bottom: 35px;
     position: relative;
-        overflow-x:hidden;
-        
+    overflow-x:hidden;
 }
 .skill > p {
     font-size: 18px;
@@ -93,7 +95,7 @@ td{
 }
 .skill:before{
     width: 100%;
-    height: 5px;
+    height: 10px;
     content: "";
     display: block;
     position: absolute;
@@ -102,7 +104,8 @@ td{
 }
 .skillBar {
     width: 100%;
-    height: 5px;
+    height: 10px;
+    border-radius: 0 10px 10px 0;
     display: block;
     position: relative;
 }
@@ -178,4 +181,41 @@ td{
         width: 90%;
     }
     
+}
+
+/* Pokemon Evolution */
+
+.evolutionContainer,.from, .to{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.evolutionContainer img{
+    width: 255px;
+}
+.from, .to{
+    flex-direction: column;
+    text-transform: uppercase;
+}
+.arrow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto 50px;
+}
+.arrow img{
+    width: 200px;
+    margin: 30px 0;
+}
+
+@media (max-width: 840px) {
+
+    .evolutionContainer{
+        flex-direction: column;
+    }
+    .arrow {
+        transform: rotate(90deg);
+    }
 }
