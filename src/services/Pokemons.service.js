@@ -10,6 +10,14 @@ export async function getPokemons(API_ENDPOINT = 'https://pokeapi.co/api/v2/poke
           };
 }
 
+export async function getAllPokemons(API_ENDPOINT = 'https://pokeapi.co/api/v2/pokemon/?limit=649') {
+  const { data } = await axios.get(API_ENDPOINT);
+
+  return {
+            pokemons: data.results, 
+          };
+}
+
 export function getPokemonInfosById(id) {
   const [result, setResult] = useState({});
   const url = `https://pokeapi.co/api/v2/pokemon/${id}`;

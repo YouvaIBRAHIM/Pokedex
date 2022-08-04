@@ -1,24 +1,30 @@
 import { useEffect, useRef } from "react";
 import PokemonsList from '../components/PokemonsList';
-import { getPokemons } from '../services/Pokemons.service.js';
+import SearchBar from "../components/SearchBar";
+import { getPokemons, getAllPokemons } from '../services/Pokemons.service.js';
 import { useSelector, useDispatch } from 'react-redux';
-import { addPokemons } from '../reducers/PokemonsReducer';
+import { addPokemons, addAllPokemons } from '../reducers/PokemonsReducer';
 
 
 function Home() {
-  let { pokemons } = useSelector((state) => state.pokemons);
+  const dispatch = useDispatch();
+
+  let { pokemons, allPokemons } = useSelector((state) => state.pokemons);
 
   const next = useRef();
 
-  const dispatch = useDispatch();
-
   useEffect(() => {
+    if (allPokemons == null) {
+      const allPokemonsResult = getAllPokemons();
+      allPokemonsResult.then(res => {
+        dispatch(addAllPokemons({allPokemons: res.pokemons }))
+      });
+    }
     const result = getPokemons();
     result.then(res => {
         dispatch(addPokemons(res));
         next.current = res.nextUrl;
     });
-
 
     window.addEventListener('scroll', onScroll);
 
@@ -27,6 +33,7 @@ function Home() {
     }
   }, []);
 
+  
   function onScroll (e) {
     let positionAscenseur = Math.ceil(window.scrollY);
     let hauteurDocument = document.documentElement.scrollHeight;
@@ -41,7 +48,11 @@ function Home() {
     }
   }
 
-  return <div>{pokemons && <PokemonsList pokemons={pokemons} />}</div>;
+  return (
+    <div>
+      <SearchBar onScroll={onScroll}/>
+      {pokemons && <PokemonsList pokemons={pokemons} />}
+    </div>);
 }
 
 export default Home;
