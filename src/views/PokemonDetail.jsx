@@ -23,7 +23,7 @@ const PokemonDetail = () => {
     }
     return (
         <div>
-            <PokemonDetailHeader pokemonName={pokemonInfos.name} pokemonImage={pokemonImage}/>
+            <PokemonDetailHeader pokemonImage={pokemonImage}/>
             <PokemonDetailTabs />
         </div>
     );

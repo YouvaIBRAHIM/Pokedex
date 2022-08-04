@@ -50,18 +50,21 @@ export function getPokemonSpeciesById(id) {
 
 export async function getPokemonEvolution(url) {
   const { data } = await axios.get(url);
-  const from = {
-    name: data.chain.evolves_to[0].species.name,
-    img: getPokemonUrlImageAndId(data.chain.evolves_to[0].species.url).img
+  if (data) {
+      const from = {
+        name: data.chain.species.name,
+        img: getPokemonUrlImageAndId(data.chain.species.url).img
+      }
+      const to = {
+        name: data.chain.evolves_to[0].evolves_to[0]  ? data.chain.evolves_to[0].evolves_to[0].species.name : data.chain.evolves_to[0].species.name,
+        img: data.chain.evolves_to[0].evolves_to[0] ? getPokemonUrlImageAndId(data.chain.evolves_to[0].evolves_to[0].species.url).img : getPokemonUrlImageAndId(data.chain.evolves_to[0].species.url).img
+      }
+      return {
+        from: from,
+        to: to
+      };
+    
   }
-  const to = {
-    name: data.chain.evolves_to[0].evolves_to[0].species.name,
-    img: getPokemonUrlImageAndId(data.chain.evolves_to[0].evolves_to[0].species.url).img
-  }
-  return {
-    from: from,
-    to: to
-  };
 }
 
 export function getPokemonUrlImageAndId(url) {

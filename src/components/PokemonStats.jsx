@@ -4,16 +4,19 @@ import styles from "../PokemonDetail.module.css";
 const PokemonStats = () => {
     const { pokemonInfos } = useSelector((state) => state.pokemonInfos);
     
-    const pokemonStats = pokemonInfos.stats
     let hp, attack, defense, specialAttack, specialDefense, speed;
-    if (pokemonStats) {
-        hp = pokemonStats[0].base_stat;
-        attack = pokemonStats[1].base_stat;
-        defense = pokemonStats[2].base_stat;
-        specialAttack = pokemonStats[3].base_stat;
-        specialDefense = pokemonStats[4].base_stat;
-        speed = pokemonStats[5].base_stat;
+    if (pokemonInfos) {
+        const pokemonStats = pokemonInfos.stats
+         if (pokemonStats) {
+            hp = pokemonStats[0].base_stat;
+            attack = pokemonStats[1].base_stat;
+            defense = pokemonStats[2].base_stat;
+            specialAttack = pokemonStats[3].base_stat;
+            specialDefense = pokemonStats[4].base_stat;
+            speed = pokemonStats[5].base_stat;
+        }
     }
+   
 
     return (
         <div className={styles.wrapper}>

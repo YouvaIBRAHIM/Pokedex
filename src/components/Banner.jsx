@@ -11,15 +11,15 @@ function Banner() {
 
   return (
     <header>
-      <h1 className={styles.mainTitle}>
+      <div className={styles.mainTitle}>
         <Link to="/"><img className={styles.pokemonLogoImage} src={pokemonLogoImage} alt="logo" /></Link>
-      </h1>
+      </div>
 
       <div style={{ display: 'flex' }}>
         <div className={styles.menuItem}>
           <Pokeball/>
           <Link to="/pokedex">
-            <strong>{count}</strong> Pokédex
+            <strong>{count} POKEDEX</strong>
           </Link>
         </div>
       </div>

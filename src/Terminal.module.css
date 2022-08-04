@@ -1,7 +1,7 @@
 @import 'https://fonts.googleapis.com/css?family=Inconsolata';
 
 
-.formContainer{
+.formContainer, .pokedexTitleContainer{
     position: relative;
     left: 50%;
     transform: translate(-50%,0%);
@@ -71,21 +71,21 @@
   height: 70px;
   width: 100%;
   max-width: 100%;
-  /* padding: 4rem; */
   text-transform: uppercase;
 }
 .terminal span{
     padding-left: 10px;   
 }
+.pokedexTerminal span{
+    position: relative;
+    top: 20px;
+}
 .output {
   color: rgba(128, 255, 128, 0.8);
   text-shadow: 0 0 1px rgba(51, 255, 51, 0.4), 0 0 2px rgba(255, 255, 255, 0.8);
 }
-.output::before {
-  content: "> ";
-}
 
- .searchInput {
+.searchInput {
     position: absolute;
     bottom: 0;
     background-color: transparent;
@@ -101,14 +101,14 @@
     cursor: pointer;
     padding: 0 15px;
 
- }
+}
 
 .errorcode {
   color: white;
 }
 
 
-form{
+form, .pokedexTerminalContainer{
     position: relative;
     left: 50%;
     transform: translate(-50%,0%);

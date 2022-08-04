@@ -1,7 +1,6 @@
 .pokeball {
     position: relative;
     transform: scale(0.5);
-
 }
 .pokeball .ballWrapper {
     position: relative;

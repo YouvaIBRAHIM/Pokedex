@@ -1,11 +1,50 @@
+import { useSelector } from "react-redux";
 import styles from "../PokemonDetail.module.css";
 
-export default function PokemonDetailHeader({ pokemonName, pokemonImage }) {
+export default function PokemonDetailHeader({ pokemonImage }) {
+  const { pokemonInfos } = useSelector((state) => state.pokemonInfos);
+  const types = [];
+
+  if (pokemonInfos) {
+    for (let i = 0; i < pokemonInfos.types.length; i++) {
+      const type = pokemonInfos.types[i].type.name;
+      types.push(type)
+    }
+  }
+
+  const colors = {
+    normal: '#A8A77A',
+    fire: '#EE8130',
+    water: '#6390F0',
+    electric: '#F7D02C',
+    grass: '#7AC74C',
+    ice: '#96D9D6',
+    fighting: '#C22E28',
+    poison: '#A33EA1',
+    ground: '#E2BF65',
+    flying: '#A98FF3',
+    psychic: '#F95587',
+    bug: '#A6B91A',
+    rock: '#B6A136',
+    ghost: '#735797',
+    dragon: '#6F35FC',
+    dark: '#705746',
+    steel: '#B7B7CE',
+    fairy: '#D685AD',
+  };
+
   return (
-    <div className={styles.coverContainer}>
-      <h1>{pokemonName}</h1>
+    <div className={styles.coverContainer} style={{background: colors[pokemonInfos ? pokemonInfos.types[0].type.name : 'normal']}}>
+      <div className={styles.infos}>
+        <h1>{pokemonInfos && pokemonInfos.name}</h1>
+
+        <div className={styles.subInfos}>
+          <h3>#{pokemonInfos && pokemonInfos.id}</h3>
+          {pokemonInfos && types.map((type, index) => <h4 key={index} className={styles.type}>{type}</h4>) }
+        </div>
+      </div>
       <div  className={styles.coverContent}>
-        <img src={pokemonImage} alt={pokemonName} />
+        <img src={pokemonImage} alt={pokemonInfos && pokemonInfos.name} />
       </div>
     </div>
   )
