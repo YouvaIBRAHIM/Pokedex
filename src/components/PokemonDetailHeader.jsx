@@ -1,8 +1,40 @@
-import { useSelector } from "react-redux";
 import styles from "../PokemonDetail.module.css";
+import { addToPokedex, removeFromPokedex } from '../reducers/PokedexReducer';
+import { useDispatch, useSelector } from 'react-redux';
+import { useState } from "react";
+import PopupAlert from './PopupAlert';
+
 
 export default function PokemonDetailHeader({ pokemonImage }) {
   const { pokemonInfos } = useSelector((state) => state.pokemonInfos);
+  const { pokemons } = useSelector((state) => state.pokedex);
+  const [showPopup, setShowPopup] = useState(false)
+  const dispatch = useDispatch();
+  let pokemon, isPokemonMarked;
+
+  if (pokemonInfos) {
+    isPokemonMarked = pokemons.find(ele => ele.name == pokemonInfos.name);
+    pokemon = {
+      name : pokemonInfos.name,
+      url : `https://pokeapi.co/api/v2/pokemon/${pokemonInfos.id}/`
+    }
+  }
+
+  const onAddToPokedex = () => {
+    dispatch(addToPokedex({pokemon: pokemon}));
+  }
+  const onRemoveFromPokedex = () => {
+    dispatch(removeFromPokedex({pokemon: pokemon}));
+    setShowPopup(false)
+  }
+  
+  const onToggleBookmark = () => {
+    if (isPokemonMarked) {
+      setShowPopup(true)
+    }else{
+      onAddToPokedex();
+    }
+  }
   const types = [];
 
   if (pokemonInfos) {
@@ -36,8 +68,10 @@ export default function PokemonDetailHeader({ pokemonImage }) {
   return (
     <div className={styles.coverContainer} style={{background: colors[pokemonInfos ? pokemonInfos.types[0].type.name : 'normal']}}>
       <div className={styles.infos}>
-        <h1>{pokemonInfos && pokemonInfos.name}</h1>
-
+        <div className={styles.subInfos}>
+          <h1>{pokemonInfos && pokemonInfos.name}</h1>
+          <button onClick={onToggleBookmark} className={isPokemonMarked ? `${styles.buttonbottomPicture} ${styles.release}` : `${styles.buttonbottomPicture} ${styles.catched}`}>{isPokemonMarked ? "RELEASE" : "CATCH"}</button>
+        </div>
         <div className={styles.subInfos}>
           <h3>#{pokemonInfos && pokemonInfos.id}</h3>
           {pokemonInfos && types.map((type, index) => <h4 key={index} className={styles.type}>{type}</h4>) }
@@ -46,6 +80,9 @@ export default function PokemonDetailHeader({ pokemonImage }) {
       <div  className={styles.coverContent}>
         <img src={pokemonImage} alt={pokemonInfos && pokemonInfos.name} />
       </div>
+      { showPopup &&
+          <PopupAlert pokemonName={pokemonInfos.name} onRemoveFromPokedex={onRemoveFromPokedex} setShowPopup={setShowPopup}/>
+      }
     </div>
   )
 }

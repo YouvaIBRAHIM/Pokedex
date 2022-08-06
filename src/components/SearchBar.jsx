@@ -3,8 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { addPokemons, clearPokemons } from '../reducers/PokemonsReducer';
 import { getPokemons } from '../services/Pokemons.service.js';
 
-
-const SearchBar = ({onScroll}) => {
+const SearchBar = () => {
     const dispatch = useDispatch();
     let { allPokemons } = useSelector((state) => state.pokemons);
 
@@ -17,7 +16,6 @@ const SearchBar = ({onScroll}) => {
             
             return result.then(res => {
                 dispatch(addPokemons({pokemons: res.pokemons}));
-                window.addEventListener('scroll', onScroll);
             });
         }
 
@@ -27,9 +25,7 @@ const SearchBar = ({onScroll}) => {
         }).slice(0, 50);
         dispatch(clearPokemons())
         dispatch(addPokemons({pokemons: pokemons}))
-        return () => {
-            window.removeEventListener('scroll', onScroll);
-        }
+
     }
     return (
         <div className={styles.formContainer}>

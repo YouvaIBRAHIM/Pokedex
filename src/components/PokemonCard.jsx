@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import styles from "../PokemonCard.module.css";
 import { addToPokedex, removeFromPokedex } from '../reducers/PokedexReducer';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPokemonUrlImageAndId } from '../services/Pokemons.service.js';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBookmark } from '@fortawesome/free-solid-svg-icons'
+import PopupAlert from './PopupAlert';
 
 export default function PokemonCard({ pokemon }) {
+  const [showPopup, setShowPopup] = useState(false)
   const { pokemons } = useSelector((state) => state.pokedex);
   const isPokemonMarked = pokemons.find(ele => ele.name == pokemon.name);
 
@@ -20,16 +20,16 @@ export default function PokemonCard({ pokemon }) {
   }
   const onRemoveFromPokedex = () => {
     dispatch(removeFromPokedex({pokemon: pokemon}));
+    setShowPopup(false)
   }
   
   const onToggleBookmark = () => {
     if (isPokemonMarked) {
-      onRemoveFromPokedex();
+      setShowPopup(true)
     }else{
       onAddToPokedex();
     }
   }
-  
   return (
     
     <div className={styles.screen}>
@@ -50,21 +50,10 @@ export default function PokemonCard({ pokemon }) {
         <div className={styles.sp}></div>
       </div>
       <div className={styles.pokemonNameContainer}><h1>{pokemon.name}</h1></div>
+      { showPopup &&
+          <PopupAlert pokemonName={pokemon.name} onRemoveFromPokedex={onRemoveFromPokedex} setShowPopup={setShowPopup}/>
+      }
     </div>
-    
-    // <figure className={`${styles.card} ${styles.cardNormal}` }>
-    //   <FontAwesomeIcon className={isPokemonMarked ? `${styles.faBookmark} ${styles.faBookmarked}` : styles.faBookmark} onClick={onToggleBookmark} icon={faBookmark} />
-    //   <Link to={`/pokemon/${pokemonId}`}>
-    //   <div className="cardImageContainer">
-    //     <img src={pokemonImg} alt={pokemon.name} className={styles.cardImage}/>   
-    //   </div>
-      
-    //   <figcaption className={styles.cardCaption}>
-    //     <h1 className={styles.cardName}>{pokemon.name.toUpperCase()}</h1>
-    //   </figcaption>
-    //   </Link>
-    // </figure>
-    
   );
 }
 
