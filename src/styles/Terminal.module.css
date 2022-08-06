@@ -2,14 +2,13 @@
 
 
 .formContainer, .pokedexTitleContainer{
-    position: relative;
+    top: 0;
     left: 50%;
     transform: translate(-50%,0%);
     height: 70px;
     width: 300px;
-    position: relative;
+    position: sticky;
     transition: all 1s;
-    top: 0;
     box-sizing: border-box;
     background-image: radial-gradient(#11581E, #041607), url("https://media.giphy.com/media/oEI9uBYSzLpBK/giphy.gif");
     background-repeat: repeat;
