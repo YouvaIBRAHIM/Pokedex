@@ -17,6 +17,7 @@
     font-weight: bold;
     font-size: 36px;
     text-transform: uppercase;
+    padding: 0;
 }
 .infos h3 {
     font-size: 28px;
@@ -31,9 +32,9 @@
 {
     height: 26px;
     font-weight: bold;
-    margin-left: 30px;
-    border-radius: 30px;
-
+    border-radius: 10px;
+    padding: 5px 15px;
+    border: none;
 }
 .infos button:hover
 {
@@ -54,16 +55,16 @@
 }
 
 .infos .release{
-    color: #3b0000;
-    box-shadow: -2px 1px #5e0000;
-    -webkit-box-shadow: -2px 1px #5e0000;
-    -moz-box-shadow: -2px 1px #5e0000;
-    -o-box-shadow: -2px 1px #5e0000;
+    color: #7a0101;
+    box-shadow: -2px 1px #c00d0d;
+    -webkit-box-shadow: -2px 1px #c00d0d;
+    -moz-box-shadow: -2px 1px #c00d0d;
+    -o-box-shadow: -2px 1px #c00d0d;
 
-    background: linear-gradient(top, #c00d0d 0%, #8b0000 80%);	
-    background: -webkit-linear-gradient(top, #c00d0d 0%, #8b0000 80%);
-    background: -moz-linear-gradient(top, #c00d0d 0%, #8b0000 80%);
-    background: -o-linear-gradient(top, #c00d0d 0%, #8b0000 80%);
+    background: linear-gradient(top, #c00d0d 0%, #f15368 80%);	
+    background: -webkit-linear-gradient(top, #c00d0d 0%, #f15368 80%);
+    background: -moz-linear-gradient(top, #c00d0d 0%, #f15368 80%);
+    background: -o-linear-gradient(top, #c00d0d 0%, #f15368 80%);
 }
 .infos button:active {
     -webkit-box-shadow: inset 6px 5px 4px -2px rgba(0,0,0,0.49); 
@@ -121,14 +122,13 @@ tr {
 th, td{
     text-align: left;  
     padding: 20px;
+    text-transform: capitalize;
 }
 
 td{
-    min-width: 400px;
+    min-width: 380px;
 }
-.abilities, .eggGroups{
-    text-transform: capitalize;
-}
+
 @media (max-width: 370px) {
 
     td{
@@ -175,7 +175,7 @@ td{
 
 /* SKILL 1 */
 .skill1{
-    background:#2ff488;
+    background:#7AC74C;
         
 }
 .skillBar span{
@@ -206,7 +206,7 @@ td{
 }
 /* SKILL 3 */
 .skill3{
-    background:#2f74f4;
+    background:#6390F0;
 }
 .skill3 .skillCount3 {
     right: 0;
@@ -214,7 +214,7 @@ td{
 
 /* SKILL 4 */
 .skill4{
-    background:#f4d02f;
+    background:#F7D02C;
 }
 
 .skill4 .skillCount4 {
@@ -223,7 +223,7 @@ td{
 
 /* SKILL 5 */
 .skill5{
-    background:#f42fa2;
+    background:#EE8130;
 }
 
 .skill5 .skillCount5 {
@@ -232,7 +232,7 @@ td{
 
 /* SKILL 6 */
 .skill6{
-    background:#ac2ff4;
+    background:#A33EA1;
 }
 
 .skill6 .skillCount6 {

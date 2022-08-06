@@ -166,9 +166,8 @@ h1{
     margin-left: 30px;
     float: left;
     border-radius: 30px;
-    -webkit-border-radius: 30px;
-    -moz-border-radius: 30px;
-    -o-border-radius: 30px;
+    border: none;
+
 
 }
 .buttonbottomPicture:hover
@@ -179,13 +178,9 @@ h1{
     color: #194400;
     box-shadow: -2px 1px #5e5d00;
     -webkit-box-shadow: -2px 1px #5e5d00;
-    -moz-box-shadow: -2px 1px #5e5d00;
-    -o-box-shadow: -2px 1px #5e5d00;
 
     background: linear-gradient(top, #6f9700 0%, #889700 80%);	
     background: -webkit-linear-gradient(top, #6f9700 0%, #889700 80%);
-    background: -moz-linear-gradient(top, #6f9700 0%, #889700 80%);
-    background: -o-linear-gradient(top, #6f9700 0%, #889700 80%);
 
 }
 
@@ -193,13 +188,9 @@ h1{
     color: #3b0000;
     box-shadow: -2px 1px #5e0000;
     -webkit-box-shadow: -2px 1px #5e0000;
-    -moz-box-shadow: -2px 1px #5e0000;
-    -o-box-shadow: -2px 1px #5e0000;
 
     background: linear-gradient(top, #c00d0d 0%, #8b0000 80%);	
     background: -webkit-linear-gradient(top, #c00d0d 0%, #8b0000 80%);
-    background: -moz-linear-gradient(top, #c00d0d 0%, #8b0000 80%);
-    background: -o-linear-gradient(top, #c00d0d 0%, #8b0000 80%);
 }
 .buttonbottomPicture:active {
     -webkit-box-shadow: inset 6px 5px 4px -2px rgba(0,0,0,0.49); 

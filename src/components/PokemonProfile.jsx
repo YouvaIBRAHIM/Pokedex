@@ -2,15 +2,18 @@ import { useSelector } from 'react-redux';
 import styles from "../PokemonDetail.module.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faVenus, faMars } from '@fortawesome/free-solid-svg-icons'
-import { useEffect } from 'react';
 
-const PokemonAbilities = () => {
+const PokemonProfile = () => {
     const { pokemonInfos, pokemonSpecies } = useSelector((state) => state.pokemonInfos);
 
     const eggGroupsName = [];
     const abilitiesName = [];
+    let female_ratio,male_ratio;
 
     if (pokemonSpecies) {
+        female_ratio = (pokemonSpecies.gender_rate / 8) * 100
+        male_ratio = 100 - female_ratio
+        
         const eggGroups = pokemonSpecies.egg_groups;
 
         if (eggGroups) {
@@ -31,8 +34,6 @@ const PokemonAbilities = () => {
             }
         }
     }
-
-    
 
     return (
         <div className={styles.tablesContainer}>
@@ -62,20 +63,20 @@ const PokemonAbilities = () => {
                 <table className={styles.table}>
                     <tbody>
                         <tr className={styles.trContainer} >
+                            <th scope="row">Habitat</th>
+                            <td>{pokemonSpecies && pokemonSpecies.habitat.name}</td>
+                        </tr>
+                        <tr className={styles.trContainer} >
                             <th scope="row">Catch Rate</th>
-                            <td>{pokemonSpecies && pokemonSpecies.capture_rate} %</td>
+                            <td>{pokemonSpecies && pokemonSpecies.capture_rate}%</td>
+                        </tr>
+                        <tr className={styles.trContainer} >
+                            <th scope="row">Base Happiness</th>
+                            <td>{pokemonSpecies && pokemonSpecies.base_happiness}%</td>
                         </tr>
                         <tr className={styles.trContainer} >
                             <th scope="row">Gender Ration</th>
-                            <td>87.5% <FontAwesomeIcon icon={faMars}/>  12.5% <FontAwesomeIcon icon={faVenus} /></td>
-                        </tr>
-                        <tr className={styles.trContainer} >
-                            <th scope="row">Hatch Steps</th>
-                            <td>5100</td>
-                        </tr>
-                        <tr className={styles.trContainer} >
-                            <th scope="row">EVs</th>
-                            <td>3 Sp Att</td>
+                            <td>{male_ratio}% <FontAwesomeIcon icon={faMars}/>  {female_ratio}% <FontAwesomeIcon icon={faVenus} /></td>
                         </tr>
                     </tbody>
                 </table>
@@ -84,4 +85,4 @@ const PokemonAbilities = () => {
     );
 };
 
-export default PokemonAbilities;
+export default PokemonProfile;

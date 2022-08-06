@@ -69,8 +69,8 @@ export default function PokemonDetailHeader({ pokemonImage }) {
     <div className={styles.coverContainer} style={{background: colors[pokemonInfos ? pokemonInfos.types[0].type.name : 'normal']}}>
       <div className={styles.infos}>
         <div className={styles.subInfos}>
-          <h1>{pokemonInfos && pokemonInfos.name}</h1>
           <button onClick={onToggleBookmark} className={isPokemonMarked ? `${styles.buttonbottomPicture} ${styles.release}` : `${styles.buttonbottomPicture} ${styles.catched}`}>{isPokemonMarked ? "RELEASE" : "CATCH"}</button>
+          <h1>{pokemonInfos && pokemonInfos.name}</h1>
         </div>
         <div className={styles.subInfos}>
           <h3>#{pokemonInfos && pokemonInfos.id}</h3>

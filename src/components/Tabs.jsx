@@ -1,6 +1,6 @@
 import {useState} from "react";
 import styles from "../Tabs.module.css";
-import PokemonAbilities from "./PokemonAbilities";
+import PokemonProfile from "./PokemonProfile";
 import PokemonStats from "./PokemonStats";
 import PokemonEvolution from "./PokemonEvolution";
 
@@ -38,7 +38,7 @@ const Tabs = () => {
       </ul>
       <div className={styles.contentContainer}>
         <div className={`${styles.content} ${getActiveClass(1, styles.activeContent)}`}>
-            <PokemonAbilities/>
+            <PokemonProfile/>
         </div>
         <div className={`${styles.content} ${getActiveClass(2, styles.activeContent)}`}>
             <PokemonStats/>
