@@ -3,9 +3,10 @@ import Home from './views/Home';
 import Pokedex from './views/Pokedex';
 import PokemonDetail from './views/PokemonDetail';
 import Banner from './components/Banner';
+import { initServiceWorker } from "./services/ServiceWorker.service";
 
 function App() {
-
+  initServiceWorker()
   return (
     <BrowserRouter>
       <div>

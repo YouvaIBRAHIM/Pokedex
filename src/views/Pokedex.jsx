@@ -1,7 +1,7 @@
 import React from 'react';
 import PokemonsList from '../components/PokemonsList';
 import { useSelector } from 'react-redux';
-import styles from "../Terminal.module.css";
+import styles from "../styles/Terminal.module.css";
 
 function Pokedex() {
   const { pokemons } = useSelector((state) => state.pokedex);

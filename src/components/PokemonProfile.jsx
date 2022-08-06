@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import styles from "../PokemonDetail.module.css";
+import styles from "../styles/PokemonDetail.module.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faVenus, faMars } from '@fortawesome/free-solid-svg-icons'
 

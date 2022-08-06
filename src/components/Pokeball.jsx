@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from "../Pokeball.module.css";
+import styles from "../styles/Pokeball.module.css";
 
 const Pokeball = () => {
 

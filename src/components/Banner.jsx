@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Pokeball from "./Pokeball";
-import pokemonLogoImage from "../assets/pokemon.png";
+import pokemonLogoImage from "../assets/pokemonLogo.png";
 
 import { useSelector } from 'react-redux';
-import styles from "../Banner.module.css";
+import styles from "../styles/Banner.module.css";
 function Banner() {
 
   const { count } = useSelector((state) => state.pokedex);

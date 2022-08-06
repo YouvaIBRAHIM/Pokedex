@@ -1,5 +1,5 @@
 import {useState} from "react";
-import styles from "../Tabs.module.css";
+import styles from "../styles/Tabs.module.css";
 import PokemonProfile from "./PokemonProfile";
 import PokemonStats from "./PokemonStats";
 import PokemonEvolution from "./PokemonEvolution";

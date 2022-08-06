@@ -1,6 +1,6 @@
 import React from 'react';
 import PokemonCard from './PokemonCard';
-import styles from "../PokemonCard.module.css";
+import styles from "../styles/PokemonCard.module.css";
 
 function PokemonsList({ pokemons }) {
 

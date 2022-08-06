@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
-import styles from "../PokemonCard.module.css";
+import styles from "../styles/PokemonCard.module.css";
 import { addToPokedex, removeFromPokedex } from '../reducers/PokedexReducer';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPokemonUrlImageAndId } from '../services/Pokemons.service.js';

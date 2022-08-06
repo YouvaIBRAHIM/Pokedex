@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import styles from "../PokemonDetail.module.css";
+import styles from "../styles/PokemonDetail.module.css";
 
 const PokemonStats = () => {
     const { pokemonInfos } = useSelector((state) => state.pokemonInfos);

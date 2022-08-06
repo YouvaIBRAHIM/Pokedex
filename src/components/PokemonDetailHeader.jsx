@@ -1,4 +1,4 @@
-import styles from "../PokemonDetail.module.css";
+import styles from "../styles/PokemonDetail.module.css";
 import { addToPokedex, removeFromPokedex } from '../reducers/PokedexReducer';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from "react";

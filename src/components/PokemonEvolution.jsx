@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import styles from "../PokemonDetail.module.css";
+import styles from "../styles/PokemonDetail.module.css";
 import arrowImage from "../assets/arrow.png";
 
 const PokemonEvolution = () => {

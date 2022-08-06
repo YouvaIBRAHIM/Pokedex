@@ -1,4 +1,4 @@
-import styles from "../PokemonCard.module.css";
+import styles from "../styles/PokemonCard.module.css";
 
 const PopupAlert = ({pokemonName, onRemoveFromPokedex, setShowPopup}) => {
     return (

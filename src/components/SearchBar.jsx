@@ -1,4 +1,4 @@
-import styles from "../Terminal.module.css";
+import styles from "../styles/Terminal.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { addPokemons, clearPokemons } from '../reducers/PokemonsReducer';
 import { getPokemons } from '../services/Pokemons.service.js';
@@ -31,14 +31,14 @@ const SearchBar = ({enableNextResult}) => {
     }
     return (
         <div className={styles.formContainer}>
-            <form action="">
+            <div className={styles.pokedexTerminalContainer}>
                 <div className={styles.noise}></div>
                 <div className={styles.overlay}></div>
                 <div className={styles.terminal}>
                     <span>	&#8811; [WELCOME]</span><br/>
                     <input onChange={(e) => searchPokemons(e.target.value)} className={styles.searchInput} type="search" placeholder='Search...' required/>
                 </div>
-            </form>
+            </div>
         </div>
     );
 };
