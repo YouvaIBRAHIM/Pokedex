@@ -3,6 +3,7 @@ import styles from "../styles/Tabs.module.css";
 import PokemonProfile from "./PokemonProfile";
 import PokemonStats from "./PokemonStats";
 import PokemonEvolution from "./PokemonEvolution";
+import PokemonDescription from "./PokemonDescription";
 
 const Tabs = () => {
   const [ToggleState, setToggleState] = useState(1);
@@ -27,11 +28,17 @@ const Tabs = () => {
           className={`${styles.tabs} ${getActiveClass(2, styles.activeTabs)}`}
           onClick={() => toggleTab(2)}
         >
-          STATS
+          DESCRIPTION
         </li>
         <li
           className={`${styles.tabs} ${getActiveClass(3, styles.activeTabs)}`}
           onClick={() => toggleTab(3)}
+        >
+          STATS
+        </li>
+        <li
+          className={`${styles.tabs} ${getActiveClass(4, styles.activeTabs)}`}
+          onClick={() => toggleTab(4)}
         >
           EVOLUTION
         </li>
@@ -41,9 +48,12 @@ const Tabs = () => {
             <PokemonProfile/>
         </div>
         <div className={`${styles.content} ${getActiveClass(2, styles.activeContent)}`}>
-            <PokemonStats/>
+            <PokemonDescription/>
         </div>
         <div className={`${styles.content} ${getActiveClass(3, styles.activeContent)}`}>
+            <PokemonStats/>
+        </div>
+        <div className={`${styles.content} ${getActiveClass(4, styles.activeContent)}`}>
             <div style={styles.slide}></div>
             <PokemonEvolution/>
         </div>

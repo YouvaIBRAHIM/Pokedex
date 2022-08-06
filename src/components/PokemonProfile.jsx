@@ -5,12 +5,12 @@ import { faVenus, faMars } from '@fortawesome/free-solid-svg-icons'
 
 const PokemonProfile = () => {
     const { pokemonInfos, pokemonSpecies } = useSelector((state) => state.pokemonInfos);
-
     const eggGroupsName = [];
     const abilitiesName = [];
     let female_ratio,male_ratio;
 
     if (pokemonSpecies) {
+        console.log(pokemonSpecies);
         female_ratio = (pokemonSpecies.gender_rate / 8) * 100
         male_ratio = 100 - female_ratio
         
@@ -24,6 +24,7 @@ const PokemonProfile = () => {
             }
         }
     }
+
     if (pokemonInfos) {
         const abilities = pokemonInfos.abilities;
         if (abilities) {

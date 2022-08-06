@@ -8,15 +8,20 @@ import PopupAlert from './PopupAlert';
 export default function PokemonDetailHeader({ pokemonImage }) {
   const { pokemonInfos } = useSelector((state) => state.pokemonInfos);
   const { pokemons } = useSelector((state) => state.pokedex);
-  const [showPopup, setShowPopup] = useState(false)
+  const [showPopup, setShowPopup] = useState(false);
   const dispatch = useDispatch();
   let pokemon, isPokemonMarked;
+  const types = [];
 
   if (pokemonInfos) {
     isPokemonMarked = pokemons.find(ele => ele.name == pokemonInfos.name);
     pokemon = {
       name : pokemonInfos.name,
       url : `https://pokeapi.co/api/v2/pokemon/${pokemonInfos.id}/`
+    }
+    for (let i = 0; i < pokemonInfos.types.length; i++) {
+      const type = pokemonInfos.types[i].type.name;
+      types.push(type)
     }
   }
 
@@ -33,14 +38,6 @@ export default function PokemonDetailHeader({ pokemonImage }) {
       setShowPopup(true)
     }else{
       onAddToPokedex();
-    }
-  }
-  const types = [];
-
-  if (pokemonInfos) {
-    for (let i = 0; i < pokemonInfos.types.length; i++) {
-      const type = pokemonInfos.types[i].type.name;
-      types.push(type)
     }
   }
 

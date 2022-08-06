@@ -18,7 +18,9 @@
     padding: 0;
     margin: auto;
 }
-  
+.tabList li{
+    margin: 0 15px;
+}
 .tabs {
     color: aliceblue;
     width: 100%;
@@ -45,6 +47,7 @@
 .content {
       display: none;
       padding: 10px;
+      height: 100%;
 }
   
 .activeContent {
@@ -57,5 +60,7 @@
     .container {
         margin-top: 70px;
     }
-    
+    .tabList li{
+        font-size: 12px;
+    }
 }

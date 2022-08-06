@@ -106,7 +106,28 @@
     transform: translateY(-30px);
   }
 }
+/* Pokemon Description */
+.descriptionsContainer{
+    background-color: antiquewhite;
+    width: 40%;
+}
+.descriptionsContainer ul{
+    margin: 0;
+    padding: 0;
+}
+.descriptionsContainer ul li {
+    background-color: antiquewhite;
+    list-style: none;
+    padding: 10px 15px;
+    border: 1px solid #161616;
+}
+@media (max-width: 370px) {
 
+    .descriptionsContainer{
+        width: 90%;
+    }
+    
+}
 /* Pokemon Profile */
 .tablesContainer{
     width: 100%;
@@ -118,7 +139,6 @@
 tr {
     background-color: antiquewhite;
 }
-
 th, td{
     text-align: left;  
     padding: 20px;
@@ -130,9 +150,14 @@ td{
 }
 
 @media (max-width: 370px) {
-
+    .tablesContainer table{
+        width: 90%!important;
+    }
     td{
         min-width: 200px;
+    }
+    th{
+        padding: 10px;
     }
     
 }

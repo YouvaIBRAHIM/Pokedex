@@ -4,7 +4,7 @@ export function initServiceWorker() {
 		if ('serviceWorker' in navigator) {
 			navigator.serviceWorker.register('../../sw.js')
 			.then(function(registration) {
-				console.log("serviceWorker registered" , registration)
+				console.log("serviceWorker registered")
 			})
 			window.addEventListener('beforeinstallprompt', (event) => {
 				event.preventDefault();
