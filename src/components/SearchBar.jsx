@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { addPokemons, clearPokemons } from '../reducers/PokemonsReducer';
 import { getPokemons } from '../services/Pokemons.service.js';
 
-const SearchBar = () => {
+const SearchBar = ({enableNextResult}) => {
     const dispatch = useDispatch();
     let { allPokemons } = useSelector((state) => state.pokemons);
 
@@ -11,6 +11,7 @@ const SearchBar = () => {
     const searchPokemons = (searchValue) => {
 
         if (searchValue.trim() == "") {
+            enableNextResult.current = true;
             dispatch(clearPokemons())
             const result = getPokemons();
             
@@ -18,14 +19,15 @@ const SearchBar = () => {
                 dispatch(addPokemons({pokemons: res.pokemons}));
             });
         }
-
+        
         const pokemons =  allPokemons.filter((pokemon) => {
             const pokemonName = pokemon.name;
             return pokemonName.includes(searchValue)
         }).slice(0, 50);
         dispatch(clearPokemons())
+        enableNextResult.current = false;
         dispatch(addPokemons({pokemons: pokemons}))
-
+        
     }
     return (
         <div className={styles.formContainer}>
