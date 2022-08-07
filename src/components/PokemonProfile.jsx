@@ -11,13 +11,17 @@ const PokemonProfile = () => {
     const { pokemonInfos, pokemonSpecies } = useSelector((state) => state.pokemonInfos);
     const eggGroupsName = [];
     const abilitiesName = [];
+    let habitat;
     let female_ratio,male_ratio;
 
     if (pokemonSpecies) {
         //calcule le ratio male/femelle du pokemon
         female_ratio = (pokemonSpecies.gender_rate / 8) * 100
-        male_ratio = 100 - female_ratio
+        male_ratio = 100 - female_ratio;
         
+        if (pokemonSpecies.habitat) {
+            habitat = pokemonSpecies.habitat.name
+        }
         const eggGroups = pokemonSpecies.egg_groups;
 
         if (eggGroups) {
@@ -69,7 +73,7 @@ const PokemonProfile = () => {
                     <tbody>
                         <tr className={styles.trContainer} >
                             <th scope="row">Habitat</th>
-                            <td>{pokemonSpecies && pokemonSpecies.habitat.name}</td>
+                            <td>{habitat}</td>
                         </tr>
                         <tr className={styles.trContainer} >
                             <th scope="row">Catch Rate</th>

@@ -70,16 +70,28 @@ export function getPokemonSpeciesById(id) {
 export async function getPokemonEvolution(url) {
   const { data } = await axios.get(url);
   if (data) {
+      let name = data.chain.species.name
+      let url = getPokemonUrlImageAndId(data.chain.species.url).img
+
       const from = {
-        name: data.chain.species.name,
+        name: name,
         img: getPokemonUrlImageAndId(data.chain.species.url).img
       }
 
-      //on verifie si le pokemon a une 3ème evolution et on la récupère, sinon on récuère la 2ème evolution
-      const to = {
-        name: data.chain.evolves_to[0].evolves_to[0]  ? data.chain.evolves_to[0].evolves_to[0].species.name : data.chain.evolves_to[0].species.name,
-        img: data.chain.evolves_to[0].evolves_to[0] ? getPokemonUrlImageAndId(data.chain.evolves_to[0].evolves_to[0].species.url).img : getPokemonUrlImageAndId(data.chain.evolves_to[0].species.url).img
+      //on verifie si le pokemon a une 3ème evolution et on la récupère, sinon on récuère la 2ème evolution. S'il n'y a pas d'evolution, on garde la première forme
+      if (data.chain.evolves_to[0]) {
+        name = data.chain.evolves_to[0].species.name
+        url = getPokemonUrlImageAndId(data.chain.evolves_to[0].species.url).img
+        if (data.chain.evolves_to[0].data.chain.evolves_to[0].evolves_to[0]){
+          name = data.chain.evolves_to[0].evolves_to[0].species.name
+          url = getPokemonUrlImageAndId(data.chain.evolves_to[0].evolves_to[0].species.url).img
+        }
       }
+      const to = {
+        name: name,
+        img: url
+      }
+      
       return {
         from: from,
         to: to
