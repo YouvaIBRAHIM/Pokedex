@@ -18,7 +18,7 @@ const appShell = [
     '/src/components/PokemonStats.jsx',
     '/src/components/PopupAlert.jsx',
     '/src/components/SearchBar.jsx',
-    '/src/components/Tabs.jsx',
+    '/src/components/PokemonDetailTabs.jsx',
     '/src/reducers/PokedexReducer.js',
     '/src/reducers/PokemonInfosReducer.js',
     '/src/reducers/PokemonsReducer.js',
