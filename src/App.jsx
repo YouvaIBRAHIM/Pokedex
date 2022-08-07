@@ -6,6 +6,7 @@ import Banner from './components/Banner';
 import { initServiceWorker } from "./services/ServiceWorker.service";
 
 function App() {
+  //lance le service worker
   initServiceWorker()
   return (
     <BrowserRouter>
