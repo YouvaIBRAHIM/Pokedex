@@ -82,7 +82,7 @@ export async function getPokemonEvolution(url) {
       if (data.chain.evolves_to[0]) {
         name = data.chain.evolves_to[0].species.name
         url = getPokemonUrlImageAndId(data.chain.evolves_to[0].species.url).img
-        if (data.chain.evolves_to[0].data.chain.evolves_to[0].evolves_to[0]){
+        if (data.chain.evolves_to[0].evolves_to[0]){
           name = data.chain.evolves_to[0].evolves_to[0].species.name
           url = getPokemonUrlImageAndId(data.chain.evolves_to[0].evolves_to[0].species.url).img
         }
@@ -91,7 +91,7 @@ export async function getPokemonEvolution(url) {
         name: name,
         img: url
       }
-      
+
       return {
         from: from,
         to: to
