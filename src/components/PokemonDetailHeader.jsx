@@ -19,9 +19,11 @@ export default function PokemonDetailHeader({ pokemonImage }) {
       name : pokemonInfos.name,
       url : `https://pokeapi.co/api/v2/pokemon/${pokemonInfos.id}/`
     }
-    for (let i = 0; i < pokemonInfos.types.length; i++) {
-      const type = pokemonInfos.types[i].type.name;
-      types.push(type)
+    if (pokemonInfos.types) {
+      for (let i = 0; i < pokemonInfos.types.length; i++) {
+        const type = pokemonInfos.types[i].type.name;
+        types.push(type)
+      }
     }
   }
 
@@ -63,7 +65,7 @@ export default function PokemonDetailHeader({ pokemonImage }) {
   };
 
   return (
-    <div className={styles.coverContainer} style={{background: colors[pokemonInfos ? pokemonInfos.types[0].type.name : 'normal']}}>
+    <div className={styles.coverContainer} style={{background: pokemonInfos ? colors[pokemonInfos.types[0].type.name] : '#A8A77A'}}>
       <div className={styles.infos}>
         <div className={styles.subInfos}>
           <button onClick={onToggleBookmark} className={isPokemonMarked ? `${styles.buttonbottomPicture} ${styles.release}` : `${styles.buttonbottomPicture} ${styles.catched}`}>{isPokemonMarked ? "RELEASE" : "CATCH"}</button>

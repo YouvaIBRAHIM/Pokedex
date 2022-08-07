@@ -17,7 +17,7 @@ function Banner() {
 
       <div style={{ display: 'flex' }}>
         <div className={styles.menuItem}>
-          <Pokeball/>
+          <Pokeball loader={false}/>
           <Link to="/pokedex">
             <strong>{count} POKEDEX</strong>
           </Link>

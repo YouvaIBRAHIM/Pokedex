@@ -1,6 +1,8 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import PokemonsList from '../components/PokemonsList';
 import SearchBar from "../components/SearchBar";
+import Pokeball from "../components/Pokeball";
+
 import { getPokemons, getAllPokemons } from '../services/Pokemons.service.js';
 import { useSelector, useDispatch } from 'react-redux';
 import { addPokemons, addAllPokemons } from '../reducers/PokemonsReducer';
@@ -11,9 +13,11 @@ import { faArrowUp } from '@fortawesome/free-solid-svg-icons'
 function Home() {
   const dispatch = useDispatch();
   let { pokemons, allPokemons, nextUrl } = useSelector((state) => state.pokemons);
-  const enableNextResult  = useRef(true);
+  let [isLoading, setIsLoading] = useState(true)
+  let [isNextResultLoading, setIsNextResultLoading] = useState(false)
+  
+  const enableNextResult = useRef(true);
   const topPageButton  = useRef();
-
   const next = useRef();
 
   useEffect(() => {
@@ -25,6 +29,7 @@ function Home() {
     }
     const result = getPokemons(nextUrl);
     result.then(res => {
+        setIsLoading(false)
         dispatch(addPokemons(res));
         next.current = res.nextUrl;
     });
@@ -43,8 +48,10 @@ function Home() {
     let hauteurFenetre = window.innerHeight;
 
     if ((positionAscenseur >= hauteurDocument - hauteurFenetre) && enableNextResult.current) {
+      setIsNextResultLoading(true)
       const result = getPokemons(next.current);
       result.then(res => {
+        setIsNextResultLoading(false)
         dispatch(addPokemons(res));
         next.current = res.nextUrl;
       })
@@ -62,8 +69,22 @@ function Home() {
   return (
     <div>
       <SearchBar enableNextResult={enableNextResult} />
+      {
+        isLoading &&
+        <div className={styles.loaderContainer}>
+          <Pokeball loader={true}/>
+        </div>
+      }
       {pokemons && <PokemonsList pokemons={pokemons} />}
-      <button ref={topPageButton} onClick={scrollToTop} className={styles.topPageButton} title="Go to top"><FontAwesomeIcon icon={faArrowUp} /></button>
+      <button ref={topPageButton} onClick={scrollToTop} className={styles.topPageButton} title="Go to top">
+        <FontAwesomeIcon icon={faArrowUp} />
+      </button>
+      {
+        isNextResultLoading &&
+        <div className={styles.loaderContainer}>
+          <Pokeball loader={true}/>
+        </div>
+      }
     </div>);
 }
 

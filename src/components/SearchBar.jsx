@@ -22,7 +22,7 @@ const SearchBar = ({enableNextResult}) => {
         
         const pokemons =  allPokemons.filter((pokemon) => {
             const pokemonName = pokemon.name;
-            return pokemonName.includes(searchValue)
+            return pokemonName.includes(searchValue.toLowerCase())
         }).slice(0, 50);
         dispatch(clearPokemons())
         enableNextResult.current = false;

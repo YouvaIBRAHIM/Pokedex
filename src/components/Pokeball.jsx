@@ -1,13 +1,13 @@
 import React from 'react';
 import styles from "../styles/Pokeball.module.css";
 
-const Pokeball = () => {
+const Pokeball = ({loader}) => {
 
     return (
         <div className={styles.pokeball}>
-            <div className={styles.ballWrapper}>
-                <div className={styles.lower}></div>
-                <div className={styles.upper}></div>
+            <div className={loader == true ? `${styles.loader}`  : `${styles.ballWrapper}`}>
+                <div className={loader == true ? `${styles.lowerLoader}`  : `${styles.lower}`}></div>
+                <div className={loader == true ? `${styles.upperLoader}`  : `${styles.upper}`}></div>
             </div>
         </div>
     );

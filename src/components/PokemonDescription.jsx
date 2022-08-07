@@ -21,8 +21,8 @@ const PokemonDescription = () => {
         <div className={styles.descriptionsContainer}>
             <ul>
             {
-                descriptions.map(description => {
-                    return <li>{description}</li>
+                descriptions.map((description, index) => {
+                    return <li key={index}>{description}</li>
                 })
             }
             </ul>

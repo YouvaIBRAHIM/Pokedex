@@ -10,7 +10,6 @@ const PokemonProfile = () => {
     let female_ratio,male_ratio;
 
     if (pokemonSpecies) {
-        console.log(pokemonSpecies);
         female_ratio = (pokemonSpecies.gender_rate / 8) * 100
         male_ratio = 100 - female_ratio
         
