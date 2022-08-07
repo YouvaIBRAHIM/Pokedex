@@ -87,6 +87,7 @@ export async function getPokemonEvolution(url) {
           url = getPokemonUrlImageAndId(data.chain.evolves_to[0].evolves_to[0].species.url).img
         }
       }
+      
       const to = {
         name: name,
         img: url
