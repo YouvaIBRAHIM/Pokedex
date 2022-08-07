@@ -13,8 +13,13 @@ export default function PokemonDetailHeader({ pokemonImage }) {
   const dispatch = useDispatch();
   let pokemon, isPokemonMarked;
   const types = [];
+  let typeColor = null;
 
   if (pokemonInfos) {
+    if("types" in pokemonInfos) {
+      typeColor = pokemonInfos.types[0].type.name
+    }
+    
     // verifie si le pokemon se trouve dans le pokedex
     isPokemonMarked = pokemons.find(ele => ele.name == pokemonInfos.name);
     pokemon = {
@@ -79,7 +84,7 @@ export default function PokemonDetailHeader({ pokemonImage }) {
   };
 
   return (
-    <div className={styles.coverContainer} style={{background: pokemonInfos ? colors[pokemonInfos.types[0].type.name] : '#A8A77A'}}>
+    <div className={styles.coverContainer} style={{background: typeColor ? colors[typeColor] : '#A8A77A'}}>
       <div className={styles.infos}>
         <div className={styles.subInfos}>
           <button onClick={onToggleDetailHeaderButton} className={isPokemonMarked ? `${styles.buttonbottomPicture} ${styles.release}` : `${styles.buttonbottomPicture} ${styles.catched}`}>{isPokemonMarked ? "RELEASE" : "CATCH"}</button>
