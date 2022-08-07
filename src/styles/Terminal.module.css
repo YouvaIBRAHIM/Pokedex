@@ -1,6 +1,6 @@
 @import 'https://fonts.googleapis.com/css?family=Inconsolata';
 
-
+/* terminal old screen effect */
 .formContainer, .pokedexTitleContainer{
     top: 0;
     left: 50%;
@@ -20,6 +20,7 @@
     outline: 10px solid #007700;
     margin-bottom: 20px;
 }
+
 .noise {
   pointer-events: none;
   position: absolute;
@@ -106,7 +107,6 @@
   color: white;
 }
 
-
 form, .pokedexTerminalContainer{
     position: relative;
     left: 50%;
@@ -116,6 +116,5 @@ form, .pokedexTerminalContainer{
     min-width: 300px;
     height: 70px;
     box-sizing: border-box;
-
     margin: 10px 0;
 }

@@ -1,3 +1,4 @@
+/* Ppkemon detail header */
 .coverContainer{
     height: 275px;
 }
@@ -5,6 +6,7 @@
     color: white;
     padding: 20px 0 0 0;
 }
+
 .infos {
     display: flex;
     align-items: center;
@@ -22,12 +24,14 @@
 .infos h3 {
     font-size: 28px;
 }
+
 .coverContent{
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
 }
+
 .infos button
 {
     height: 26px;
@@ -106,10 +110,11 @@
     transform: translateY(-30px);
   }
 }
+
 /* Pokemon Description */
 .descriptionsContainer{
     background-color: antiquewhite;
-    width: 40%;
+    width: 50%;
 }
 .descriptionsContainer ul{
     margin: 0;
@@ -121,7 +126,7 @@
     padding: 10px 15px;
     border: 1px solid #161616;
 }
-@media (max-width: 370px) {
+@media (max-width: 440px) {
 
     .descriptionsContainer{
         width: 90%;
@@ -149,12 +154,13 @@ td{
     min-width: 380px;
 }
 
-@media (max-width: 370px) {
+@media (max-width: 440px) {
     .tablesContainer table{
+        margin: auto;
         width: 90%!important;
     }
     td{
-        min-width: 200px;
+        min-width: 100%;
     }
     th{
         padding: 10px;
@@ -198,11 +204,6 @@ td{
     position: relative;
 }
 
-/* SKILL 1 */
-.skill1{
-    background:#7AC74C;
-        
-}
 .skillBar span{
     position: absolute;
     border-top: 5px solid #f4392f;
@@ -213,15 +214,17 @@ td{
     padding: 3px 0;
     font-weight: 500;
 }
-.skillBar {
-    position: relative;
+
+/* HP */
+.skill1{
+    background:#7AC74C;
         
 }
 
 .skill1 .skillCount1 {
     right: 0;
 }
-/* SKILL 2 */
+/* Attack */
 .skill2{
     background:#f4392f;
 }
@@ -229,7 +232,7 @@ td{
 .skill2 .skillCount2 {
     right: 0;
 }
-/* SKILL 3 */
+/* Defense */
 .skill3{
     background:#6390F0;
 }
@@ -237,7 +240,7 @@ td{
     right: 0;
 }
 
-/* SKILL 4 */
+/* Speed */
 .skill4{
     background:#F7D02C;
 }
@@ -246,7 +249,7 @@ td{
     right: 0;
 }
 
-/* SKILL 5 */
+/* Sp Atk */
 .skill5{
     background:#EE8130;
 }
@@ -255,7 +258,7 @@ td{
     right: 0;
 }
 
-/* SKILL 6 */
+/* Sp Def */
 .skill6{
     background:#A33EA1;
 }
@@ -263,6 +266,7 @@ td{
 .skill6 .skillCount6 {
     right: 0;
 }
+
 @media (max-width: 450px) {
 
     .wrapper{
