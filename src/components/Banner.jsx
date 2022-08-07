@@ -2,9 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Pokeball from "./Pokeball";
 import pokemonLogoImage from "../assets/pokemonLogo.png";
-
 import { useSelector } from 'react-redux';
 import styles from "../styles/Banner.module.css";
+
+/**
+ * affiche le nombre de pokemons stockés dans le pokedex
+ * @returns la barre de navigation du site
+ */
 function Banner() {
 
   const { count } = useSelector((state) => state.pokedex);

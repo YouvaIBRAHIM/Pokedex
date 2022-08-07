@@ -1,15 +1,24 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
+/**
+ * récupère les pokemons à afficher
+ * @param {String} API_ENDPOINT url à fetcher
+ * @returns un tableau de pokemons avec leur nom et leur url et un l'url de la suite du résult
+ */
 export async function getPokemons(API_ENDPOINT = 'https://pokeapi.co/api/v2/pokemon/') {
   const { data } = await axios.get(API_ENDPOINT);
-
   return {
             pokemons: data.results, 
             nextUrl: data.next
           };
 }
 
+/**
+ * récupère tous les pokemons (limité à 649 pokemons) à filtrer dans la barre de recherche
+ * @param {String} API_ENDPOINT  url à fetcher
+ * @returns  un tableau de pokemons avec leur nom et leur url et un l'url
+ */
 export async function getAllPokemons(API_ENDPOINT = 'https://pokeapi.co/api/v2/pokemon/?limit=649') {
   const { data } = await axios.get(API_ENDPOINT);
 
@@ -18,6 +27,10 @@ export async function getAllPokemons(API_ENDPOINT = 'https://pokeapi.co/api/v2/p
           };
 }
 
+
+/**
+ * récupère les informations de base d'un pokemon grace à son ID
+ */
 export function getPokemonInfosById(id) {
   const [result, setResult] = useState({});
   const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
@@ -33,6 +46,9 @@ export function getPokemonInfosById(id) {
   return result;
 }
 
+/**
+ * récupère les spécificités d'un pokemon grace à son ID
+ */
 export function getPokemonSpeciesById(id) {
   const [result, setResult] = useState(null);
   const url = `https://pokeapi.co/api/v2/pokemon-species/${id}`;
@@ -48,6 +64,9 @@ export function getPokemonSpeciesById(id) {
   return result;
 }
 
+/**
+ * récupère les évolutions d'un pokemon grace à son ID
+ */
 export async function getPokemonEvolution(url) {
   const { data } = await axios.get(url);
   if (data) {
@@ -55,6 +74,8 @@ export async function getPokemonEvolution(url) {
         name: data.chain.species.name,
         img: getPokemonUrlImageAndId(data.chain.species.url).img
       }
+
+      //on verifie si le pokemon a une 3ème evolution et on la récupère, sinon on récuère la 2ème evolution
       const to = {
         name: data.chain.evolves_to[0].evolves_to[0]  ? data.chain.evolves_to[0].evolves_to[0].species.name : data.chain.evolves_to[0].species.name,
         img: data.chain.evolves_to[0].evolves_to[0] ? getPokemonUrlImageAndId(data.chain.evolves_to[0].evolves_to[0].species.url).img : getPokemonUrlImageAndId(data.chain.evolves_to[0].species.url).img
@@ -67,6 +88,11 @@ export async function getPokemonEvolution(url) {
   }
 }
 
+/**
+ * récuère l'id et l'image d'un pokemon grace à son url
+ * @param {String} url url associée au pokemon
+ * @returns un id et une image
+ */
 export function getPokemonUrlImageAndId(url) {
   const urlElemnts = url.split('/');
   const pokemonId = urlElemnts[urlElemnts.length - 2];

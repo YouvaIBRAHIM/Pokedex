@@ -3,6 +3,10 @@ import styles from "../styles/PokemonDetail.module.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faVenus, faMars } from '@fortawesome/free-solid-svg-icons'
 
+/**
+ * 
+ * @returns les caractéristiques du pokemon 
+ */
 const PokemonProfile = () => {
     const { pokemonInfos, pokemonSpecies } = useSelector((state) => state.pokemonInfos);
     const eggGroupsName = [];
@@ -10,6 +14,7 @@ const PokemonProfile = () => {
     let female_ratio,male_ratio;
 
     if (pokemonSpecies) {
+        //calcule le ratio male/femelle du pokemon
         female_ratio = (pokemonSpecies.gender_rate / 8) * 100
         male_ratio = 100 - female_ratio
         

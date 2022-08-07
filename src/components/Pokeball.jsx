@@ -1,6 +1,11 @@
 import React from 'react';
 import styles from "../styles/Pokeball.module.css";
 
+/**
+ * l'animation varie selon le paramètre "loader"
+ * @param {Boolean} loader 
+ * @returns une pokeball animée
+ */
 const Pokeball = ({loader}) => {
 
     return (

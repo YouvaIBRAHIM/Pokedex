@@ -3,22 +3,25 @@ import { addToPokedex, removeFromPokedex } from '../reducers/PokedexReducer';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from "react";
 import PopupAlert from './PopupAlert';
+import { v4 as uuid } from "uuid";
 
 
 export default function PokemonDetailHeader({ pokemonImage }) {
   const { pokemonInfos } = useSelector((state) => state.pokemonInfos);
   const { pokemons } = useSelector((state) => state.pokedex);
-  const [showPopup, setShowPopup] = useState(false);
+  const [ showPopup, setShowPopup ] = useState(false);
   const dispatch = useDispatch();
   let pokemon, isPokemonMarked;
   const types = [];
 
   if (pokemonInfos) {
+    // verifie si le pokemon se trouve dans le pokedex
     isPokemonMarked = pokemons.find(ele => ele.name == pokemonInfos.name);
     pokemon = {
       name : pokemonInfos.name,
       url : `https://pokeapi.co/api/v2/pokemon/${pokemonInfos.id}/`
     }
+    // récupère les catégories du pokemon
     if (pokemonInfos.types) {
       for (let i = 0; i < pokemonInfos.types.length; i++) {
         const type = pokemonInfos.types[i].type.name;
@@ -27,15 +30,26 @@ export default function PokemonDetailHeader({ pokemonImage }) {
     }
   }
 
+  /**
+   * ajoute le pokemon dans le pokedex
+   */
   const onAddToPokedex = () => {
     dispatch(addToPokedex({pokemon: pokemon}));
   }
+
+  /**
+   * supprime le pokemon du pokedex
+   */
   const onRemoveFromPokedex = () => {
     dispatch(removeFromPokedex({pokemon: pokemon}));
     setShowPopup(false)
   }
   
-  const onToggleBookmark = () => {
+
+  /**
+ * si le pokemon est déjà dans le pokedex, on affiche une pop up pour confirmer la suppression, sinon on l'ajoute dans le pokedex
+ */
+  const onToggleDetailHeaderButton = () => {
     if (isPokemonMarked) {
       setShowPopup(true)
     }else{
@@ -68,12 +82,12 @@ export default function PokemonDetailHeader({ pokemonImage }) {
     <div className={styles.coverContainer} style={{background: pokemonInfos ? colors[pokemonInfos.types[0].type.name] : '#A8A77A'}}>
       <div className={styles.infos}>
         <div className={styles.subInfos}>
-          <button onClick={onToggleBookmark} className={isPokemonMarked ? `${styles.buttonbottomPicture} ${styles.release}` : `${styles.buttonbottomPicture} ${styles.catched}`}>{isPokemonMarked ? "RELEASE" : "CATCH"}</button>
+          <button onClick={onToggleDetailHeaderButton} className={isPokemonMarked ? `${styles.buttonbottomPicture} ${styles.release}` : `${styles.buttonbottomPicture} ${styles.catched}`}>{isPokemonMarked ? "RELEASE" : "CATCH"}</button>
           <h1>{pokemonInfos && pokemonInfos.name}</h1>
         </div>
         <div className={styles.subInfos}>
           <h3>#{pokemonInfos && pokemonInfos.id}</h3>
-          {pokemonInfos && types.map((type, index) => <h4 key={index} className={styles.type}>{type}</h4>) }
+          {pokemonInfos && types.map((type) => <h4 key={uuid()} className={styles.type}>{type}</h4>) }
         </div>
       </div>
       <div  className={styles.coverContent}>

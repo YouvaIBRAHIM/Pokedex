@@ -3,6 +3,9 @@ import PokemonsList from '../components/PokemonsList';
 import { useSelector } from 'react-redux';
 import styles from "../styles/Terminal.module.css";
 
+/**
+ * @returns renvoit la liste des pokemons se trouvant dans le pokedex
+ */
 function Pokedex() {
   const { pokemons } = useSelector((state) => state.pokedex);
   

@@ -12,7 +12,6 @@ const appShell = [
     '/src/components/PokemonCard.jsx',
     '/src/components/PokemonDescription.jsx',
     '/src/components/PokemonDetailHeader.jsx',
-    '/src/components/PokemonDetailTabs.jsx',
     '/src/components/PokemonEvolution.jsx',
     '/src/components/PokemonProfile.jsx',
     '/src/components/PokemonsList.jsx',

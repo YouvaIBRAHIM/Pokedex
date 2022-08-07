@@ -1,6 +1,10 @@
 import { useSelector } from 'react-redux';
 import styles from "../styles/PokemonDetail.module.css";
 
+/**
+ * 
+ * @returns Les statistiques du pokemon (HP, Attack, Defense, Speed, Sp Atk, Sp Def)
+ */
 const PokemonStats = () => {
     const { pokemonInfos } = useSelector((state) => state.pokemonInfos);
     

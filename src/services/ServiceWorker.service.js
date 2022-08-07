@@ -1,3 +1,6 @@
+/**
+ * lance le service worker pour mettre en memoire les données nécéssaires afin que le site soit accéssible par la suite en offline
+ */
 export function initServiceWorker() {
         let deferred_prompt;
 

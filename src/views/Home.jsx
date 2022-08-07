@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import PokemonsList from '../components/PokemonsList';
 import SearchBar from "../components/SearchBar";
 import Pokeball from "../components/Pokeball";
-
 import { getPokemons, getAllPokemons } from '../services/Pokemons.service.js';
 import { useSelector, useDispatch } from 'react-redux';
 import { addPokemons, addAllPokemons } from '../reducers/PokemonsReducer';
@@ -21,19 +20,30 @@ function Home() {
   const next = useRef();
 
   useEffect(() => {
+    // si tous les pokemons ne sont pas déjà stockés dans le localstorage, on les récuère une seule fois
     if (allPokemons == null) {
-      const allPokemonsResult = getAllPokemons();
-      allPokemonsResult.then(res => {
-        dispatch(addAllPokemons({allPokemons: res.pokemons }))
-      });
+      try {
+        const allPokemonsResult = getAllPokemons();
+        allPokemonsResult.then(res => {
+          dispatch(addAllPokemons({allPokemons: res.pokemons }))
+        });
+      } catch (error) {
+        console.log(error);
+      }
     }
-    const result = getPokemons(nextUrl);
-    result.then(res => {
+    
+    // récupère les pokemons à afficher
+    try {
+      const result = getPokemons(nextUrl);
+      result.then(res => {
         setIsLoading(false)
         dispatch(addPokemons(res));
         next.current = res.nextUrl;
-    });
-
+      });
+    } catch (error) {
+      console.log(error);
+    }
+    
     window.addEventListener('scroll', onScroll);
 
     return () => {
@@ -41,13 +51,16 @@ function Home() {
     }
   }, []);
 
-  
-  function onScroll (e) {
-    let positionAscenseur = Math.ceil(window.scrollY);
-    let hauteurDocument = document.documentElement.scrollHeight;
-    let hauteurFenetre = window.innerHeight;
+  /**
+   * verifie si on est en bas de la page pour récupèrer la suite des pokemons à afficher
+   * verifie également si l'utilisateur scroll vers le bas pour faire apparaitre le bouton permettant de remonter en haut de la page
+   */
+  function onScroll () {
+    let scrollY = Math.ceil(window.scrollY);
+    let documentHeight = document.documentElement.scrollHeight;
+    let innerHeight = window.innerHeight;
 
-    if ((positionAscenseur >= hauteurDocument - hauteurFenetre) && enableNextResult.current) {
+    if ((scrollY >= documentHeight - innerHeight) && enableNextResult.current) {
       setIsNextResultLoading(true)
       const result = getPokemons(next.current);
       result.then(res => {
@@ -62,6 +75,10 @@ function Home() {
       topPageButton.current.style.display = "none";
     }
   }
+
+  /**
+   * fait remonter en haut de la page
+   */
   function scrollToTop() {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
@@ -70,6 +87,7 @@ function Home() {
     <div>
       <SearchBar enableNextResult={enableNextResult} />
       {
+        //affiche un loader tant que les pokemons ne sont pas récupèrés 
         isLoading &&
         <div className={styles.loaderContainer}>
           <Pokeball loader={true}/>
@@ -80,6 +98,7 @@ function Home() {
         <FontAwesomeIcon icon={faArrowUp} />
       </button>
       {
+        // affiche un loader en arrivant en bas de la page puis disparait quand la suite des pokèmons à afficher sont récupérés
         isNextResultLoading &&
         <div className={styles.loaderContainer}>
           <Pokeball loader={true}/>
